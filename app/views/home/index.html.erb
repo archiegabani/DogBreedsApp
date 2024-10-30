@@ -2,7 +2,6 @@
   <h1 class="text-center mb-4">Welcome to Dog Breeds Explorer</h1>
 
   <% unless controller_name == "breeds" && action_name == "show" %>
-  
     <%= form_with(url: breeds_path, method: :get, local: true, class: "form-inline justify-content-center mb-4") do |form| %>
       <div class="form-group">
         <%= form.text_field :query, placeholder: "Search for a breed...", class: "form-control mr-2" %>
@@ -17,6 +16,12 @@
 
       <%= submit_tag "Search", class: "btn btn-primary" %>
     <% end %>
+  <% end %>
+
+  <% if @message.present? %>
+    <div class="alert alert-warning text-center">
+      <%= @message %>
+    </div>
   <% end %>
 
   <div class="row">
