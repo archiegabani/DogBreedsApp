@@ -14,21 +14,27 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <% @breeds.each do |breed| %>
-      <div class="col-md-4 mb-4">
-        <div class="card breed-card">
-          <div class="card-body">
-            <h5 class="card-title text-center">
-              <%= link_to breed.name, breed_path(breed), class: "stretched-link" %>
-            </h5>
+  <% if @breeds.any? %>  <!-- Conditional to check if there are any breeds -->
+    <div class="row">
+      <% @breeds.each do |breed| %>
+        <div class="col-md-4 mb-4">
+          <div class="card breed-card">
+            <div class="card-body">
+              <h5 class="card-title text-center">
+                <%= link_to breed.name, breed_path(breed), class: "stretched-link" %>
+              </h5>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
 
-  <div class="d-flex justify-content-center">
-    <%= paginate @breeds %>
-  </div>
+    <div class="d-flex justify-content-center">
+      <%= paginate @breeds %>
+    </div>
+  <% else %>  <!-- Conditional to display a message if no breeds are found -->
+    <div class="alert alert-info text-center">
+      No breeds found matching your search criteria. Please try another search.
+    </div>
+  <% end %>
 </div>
