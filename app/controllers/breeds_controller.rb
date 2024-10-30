@@ -1,14 +1,15 @@
 class BreedsController < ApplicationController
   def index
+    @breeds = Breed.all
     if params[:query].present?
-      # Use LOWER() to convert both the breed name and query to lowercase for case-insensitive comparison
-      @breeds = Breed.where(id: params[:query]).page(params[:page]).per(9)
-    else
-      @breeds = Breed.page(params[:page]).per(9)
-    end
-  end
+      @breeds = Breed.where("LOWER(name) LIKE ?", "%#{params[:query].downcase}%").page(params[:page]).per(9)
 
-  def show
-    @breed = Breed.find(params[:id])
+      # Check if any breeds were found
+      if @breeds.empty?
+        @message = "Oops, the breed you entered does not exist in our database!"
+      end
+    else
+      @breeds = Breed.page(params[:page]).per(9)  # Pagination for all breeds
+    end
   end
 end
