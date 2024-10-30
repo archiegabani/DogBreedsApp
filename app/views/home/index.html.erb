@@ -14,7 +14,7 @@
     </div>
   <% end %>
 
-  <% if @breeds.any? %>  <!-- Conditional to check if there are any breeds -->
+  <% if @breeds.any? %>
     <div class="row">
       <% @breeds.each do |breed| %>
         <div class="col-md-4 mb-4">
@@ -32,7 +32,7 @@
     <div class="d-flex justify-content-center">
       <%= paginate @breeds %>
     </div>
-  <% else %>  <!-- Conditional to display a message if no breeds are found -->
+  <% else %>
     <div class="alert alert-info text-center">
       <%= flash[:alert] || "No breeds found. Please try searching again." %>
     </div>
