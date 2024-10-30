@@ -1,8 +1,13 @@
 class HomeController < ApplicationController
   def index
-    if params[:breed_id].present?
-      # Find the selected breed
-      @breeds = Breed.where(id: params[:breed_id])  # This will return the breed that matches the selected ID
+    if params[:query].present?
+      # Search for breeds based on user input
+      @breeds = Breed.where("name ILIKE ?", "%#{params[:query]}%")
+
+      # Check if the breed exists
+      if @breeds.empty?
+        flash.now[:alert] = "Oops, the breed you entered does not exist in our database!"
+      end
     else
       # Paginate all breeds if no breed is selected
       @breeds = Breed.page(params[:page]).per(9)
