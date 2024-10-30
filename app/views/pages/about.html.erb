@@ -1,11 +1,18 @@
 <div class="container mt-5">
   <h1>About Dog Breeds Explorer</h1>
   <p>This project explores various dog breeds using data from two dog-related APIs...</p>
+  
   <h2 class="text-center mt-4">Dog API</h2>
   <p class="text-center">Purpose: To fetch dog breeds and related images.</p>
+  
   <p class="text-center">Endpoints:</p>
   <ul class="text-center">
     <li><strong>Random Dog Images Endpoint:</strong> <a href="https://dog.ceo/api/breeds/image/random" target="_blank">https://dog.ceo/api/breeds/image/random</a> - This endpoint provides random images of different dog breeds, which can be used to display diverse breed photos in your project.</li>
     <li><strong>All Breeds List Endpoint:</strong> <a href="https://dog.ceo/api/breeds/list/all" target="_blank">https://dog.ceo/api/breeds/list/all</a> - This endpoint lists all available dog breeds, which you can use to populate breed categories and details in your database.</li>
   </ul>
+  
+  <div class="text-center mt-4">
+    <h3>Entity-Relationship Diagram</h3>
+    <%= image_tag "ERD.png", alt: "Entity-Relationship Diagram", class: "img-fluid" %>
+  </div>
 </div>
