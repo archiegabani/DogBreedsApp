@@ -34,7 +34,7 @@
     </div>
   <% else %>  <!-- Conditional to display a message if no breeds are found -->
     <div class="alert alert-info text-center">
-      No breeds found matching your search criteria. Please try another search.
+      <%= flash[:alert] || "No breeds found. Please try searching again." %>
     </div>
   <% end %>
 </div>
