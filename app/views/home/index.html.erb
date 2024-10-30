@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Welcome to Dog Breeds Explorer</h1>
+
+  <% unless controller_name == "breeds" && action_name == "show" %>
+    <%= form_with(url: breeds_path, method: :get, local: true, class: "form-inline justify-content-center mb-4") do |form| %>
+      <div class="form-group">
+        <%= form.text_field :query, placeholder: "Search for a breed...", class: "form-control mr-2" %>
+        <%= form.submit "Search", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <%= form_with(url: breeds_path, method: :get, local: true, class: "form-inline justify-content-center mb-4") do %>
+      <div class="form-group">
+        
+        <%= select_tag "breed_id", options_from_collection_for_select(@breeds, :id, :name, params[:breed_id]), include_blank: "Select a breed", class: "form-control" %>
+      </div>
+
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+
+  <div class="row">
+    <% @breeds.each do |breed| %>
+      <div class="col-md-4 mb-4">
+        <div class="card breed-card">
+          <div class="card-body">
+            <h5 class="card-title text-center">
+              <%= link_to breed.name, breed_path(breed), class: "stretched-link" %>
+            </h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <%= paginate @breeds %>
+  </div>
+</div>

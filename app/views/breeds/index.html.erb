@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Breeds</h1>
+
+  <!-- Search Form -->
+  <div class="mb-4 text-center">
+    <%= form_with url: breeds_path, method: :get, local: true do %>
+      <div class="input-group">
+        <%= text_field_tag :query, params[:query], placeholder: "Search breeds...", class: "form-control" %>
+        <div class="input-group-append">
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <% @breeds.each do |breed| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <h5 class="card-title"><%= link_to breed.name, breed_path(breed) %></h5>
+            <p class="card-text">Category: <%= breed.category.name %></p>
+            <% if breed.images.any? %>
+              <%= image_tag breed.images.first.url, alt: "#{breed.name} image", class: "img-fluid" %>
+            <% else %>
+              <p>No image available</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Pagination Links -->
+  <div class="text-center mt-4">
+    <%= link_to "Back to Home", root_path, class: "btn btn-secondary" %>
+    <%= paginate @breeds %> <!-- Add this line for pagination controls -->
+  </div>
+</div>
