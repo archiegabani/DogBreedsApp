@@ -15,4 +15,11 @@
     <h3>Entity-Relationship Diagram</h3>
     <%= image_tag "ERD.png", alt: "Entity-Relationship Diagram", class: "img-fluid" %>
   </div>
+
+  <h2 class="text-center mt-4">Database Relationships</h2>
+  <p class="text-center">In this application, the following relationships are defined:</p>
+  <ul class="text-center">
+    <li><strong>Breeds and Categories:</strong> Each breed belongs to one category, establishing a <em>one-to-many</em> relationship where one category can have multiple breeds.</li>
+    <li><strong>Breeds and Images:</strong> Each breed can have multiple images associated with it, creating a <em>one-to-many</em> relationship between breeds and images.</li>
+  </ul>
 </div>
