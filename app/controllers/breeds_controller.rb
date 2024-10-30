@@ -1,6 +1,7 @@
 class BreedsController < ApplicationController
   def index
-    @breeds = Breed.all
+    @breeds = Breed.all.page(params[:page]).per(9)  # Pagination for all breeds
+
     if params[:query].present?
       @breeds = Breed.where("LOWER(name) LIKE ?", "%#{params[:query].downcase}%").page(params[:page]).per(9)
 
@@ -8,8 +9,6 @@ class BreedsController < ApplicationController
       if @breeds.empty?
         @message = "Oops, the breed you entered does not exist in our database!"
       end
-    else
-      @breeds = Breed.page(params[:page]).per(9)  # Pagination for all breeds
     end
   end
 end
