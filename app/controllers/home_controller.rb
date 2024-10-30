@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   def index
     if params[:query].present?
-      # Find the breeds based on the search query
-      @breeds = Breed.where("name ILIKE ?", "%#{params[:query]}%") # Use ILIKE for case-insensitive search
+      # Find breeds based on the search query, using ILIKE for case-insensitive search
+      @breeds = Breed.where("name ILIKE ?", "%#{params[:query]}%")
 
       if @breeds.empty?
         flash[:alert] = "Oops, the breed you entered does not exist in our database!"
